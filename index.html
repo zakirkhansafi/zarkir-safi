@@ -1,0 +1,142 @@
+<!doctype html class="my-2 rounded-full h-10 w-[16rem] px-4">
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome Icons  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+
+    <!-- Google Fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <title>Loan Calculator - @code.scientist</title>
+</head>
+
+<style>
+    * {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background-color: #111827;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container {
+        background-image: url('dollar.jpg');
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 6px solid deepskyblue;
+        padding: 70px;
+        border-radius: 40px;
+        width: 30rem;
+        
+    }
+    h1{
+        color: rgb(46, 45, 52);
+        font-family: sans;
+        
+    }
+    .form-input {
+        border: 2px solid deepskyblue;
+        width: 14rem;
+        height: 2rem;
+        background: white;
+        border-radius: 5px;
+        margin: 5px ;
+    }
+
+    .input {
+        height: 100%;
+        width: 80%;
+        border: none;
+        outline: none;
+        padding: 0 10px;
+    }
+
+    .input-icon {
+        width: 15%;
+        height: 100%;
+        border: 1px solid blueviolet;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .calculateBtn {
+        height: 3rem;
+        width: 8rem;
+        border: 2px solid white;
+        background: red;
+        color: black;
+        font-size: 16px;
+        border-radius: 7px;
+        padding: 8px;
+        margin-top: 10px;
+        cursor: pointer;
+        font-family: cursive;
+    }
+    .calculateBtn:hover{
+        background-color: aliceblue;
+        height: 4rem;
+        width: 14rem;
+        transition: 1s;
+        border-color: red;
+        color: blue;
+    }
+    
+</style>
+
+
+<body>
+    <div class="container">
+        <h1>Loan Calculator</h1>
+        <div class="form-input">
+            <button class="input-icon"><i class="fas fa-dollar-sign"></i></button>
+            <input type="number" class="input" id="amount" placeholder="Loan Amount">
+        </div>
+        <div class="form-input">
+            <button class="input-icon"><i class="fas fa-percentage"></i></button>
+            <input type="number" class="input" id="interest" placeholder="Interest">
+        </div>
+        <div class="form-input">
+            <button class="input-icon"><i class="fas fa-calendar"></i></button>
+            <input type="number" class="input" id="months" placeholder="Months to repay">
+        </div>
+
+        <button class="calculateBtn" onclick="calculateLoan()">Calculate</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const calculateLoan = () => {
+            let amount = document.getElementById("amount").value;
+            let interest = document.getElementById("interest").value;
+            let months = document.getElementById("months").value;
+
+            let monthlyPayment = ((amount / months) + interest);
+            let totalInterest = (amount * (interest * 0.01)) / months;
+            let totalPayment = parseFloat(amount) + parseFloat(totalInterest);
+
+            document.getElementById("result").innerHTML = `
+                                <h2>Results : </h2>
+                                <h4>Total payment : ${parseFloat(totalPayment).toFixed(2)}</h4> 
+                                <h4>Monthly Payment : ${parseFloat(monthlyPayment).toFixed(2)}</h4>
+                                <h4>Total Interest : ${parseFloat(totalInterest).toFixed(2)}</h4>`;
+        }
+    </script>
+</body>
+
+</html>
